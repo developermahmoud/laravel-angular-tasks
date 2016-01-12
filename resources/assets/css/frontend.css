@@ -1,0 +1,12 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);body{font-family:'Droid Arabic Kufi', serif;}
+#author-slider .item{margin:3px;}
+#author-slider .item img{display:block;width:100%;height:auto;}
+.thread-box{margin:10px auto;background:#f9f9f9;border:solid 1px #eee;}
+.threads_statistics{margin:10px auto;background:#f9f9f9;}
+.threads_comments{margin:10px auto;background:#f9f9f9;}
+.threads_authors{margin:10px auto;background:#f9f9f9;}
+.threads_statistics_authors{margin:10px auto;background:#f9f9f9;}
+.homework-box{padding:7px;width:300px;}
+.homework-box header{background:#e9e9e9;border:solid 1px #eee;padding:5px;cursor:pointer;}
+.body-homework{display:none;}
+.footer{width:100%;height:60px;background-color:#f5f5f5;line-height:60px;margin-top:20px;}

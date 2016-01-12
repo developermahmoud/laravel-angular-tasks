@@ -1,0 +1,71 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+
+
+<div class="container">
+<br />
+<div class="alert alert-info">
+	<table class="table" ng-repeat="task in task">
+		<tr>
+			<td><strong>اسم الكتاب: </strong></td>
+			<td> {{task.book_name}}</td>
+		</tr>
+		<tr>
+			<td><strong>مرسل التاسك: </strong></td>
+			<td> {{task.user_username}}</td>
+		</tr>	
+
+		<tr>
+			<td><strong>المسؤل عن التاسك: </strong></td>
+			<td><user-responsibility data-id="{{task.user_responsibility}}"></user-responsibility></td>
+		</tr>	
+
+		<tr>
+			<td><strong>عنوان التاسك: </strong></td>
+			<td> {{ task.title }}</td>
+		</tr>
+		<tr>
+			<td><strong>مطلوب: </strong></td>
+			<td> {{ task.content }}</td>
+		</tr>		
+		<tr>
+			<td><strong>تاريخ الأنشاء: </strong></td>
+			<td> {{ task.date_created }}</td>
+		</tr>
+		<tr>
+			<td><strong>تاريخ الأنتهاء: </strong></td>
+			<td> {{ task.end_date }}</td>
+		</tr>							
+	</table>	
+</div>
+
+<button type="button" ng-click="closeTask()" ng-if="close_task" ng-if="!task[0].status" class="btn btn-lg btn-block btn-warning">اغلاق التاسك</button>
+<button type="button" ng-if="task[0].status" class="btn btn-lg btn-block btn-success">تم غلق التاسك</button>
+
+<h3 class="page-header">الموظفين المسؤلين عن التاسك</h3>
+<table class="table table-responsive">
+	<thead>
+		<tr>
+			<th>اسم الموظف</th>
+			<th>الحالة</th>
+			<th>ملف مرفق</th>
+			<th>ملحوظة</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-switch on="user.status" ng-repeat="user in users_task">
+			<td>{{ user.username }} </td>
+			<td ng-switch-when="0"><span class="label label-danger">فى الأنتظار</span></td>
+			<td ng-switch-when="1"><span class="label label-warning">فى الأستلام</span></td>
+			<td ng-switch-when="2"><span class="label label-warning">جارى العمل على التاسك</span></td>
+			<td ng-switch-when="3"><button class="btn btn-success btn-xs">
+			تم الأنتهاء من التاسك  {{user.close_date}}</button>
+			<button class="btn btn-danger btn-xs" ng-click="cancelStatus(user)">X</button>
+			</td>
+			<td><a href='public/upload/{{user.src}}'>{{user.src}}</a></td>
+			<td>{{user.content}}</td>			
+		</tr>
+	</tbody>
+</table>
+
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "angular-todo",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-cookies": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "wow": "wowjs#~1.1.2",
+    "angular-resource": "~1.4.7",
+    "sweetalert": "~1.1.0",
+    "plupload-angular-directive": "~0.1.2",
+    "ng-file-upload": "~9.1.1"
+  }
+}

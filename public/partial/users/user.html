@@ -1,0 +1,111 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+<div class="container">
+<h3 class="page-header">التعامل مع الموظفين</h3>
+<div>
+<uib-tabset justified="true">
+	<uib-tab heading="اضافة موظف جديد">
+		<form name="createForm" ng-submit="createUser()">
+		<div class="form-group">
+		<label>الأسم بااكمل</label>
+		<input type="text" class="form-control" ng-model="user.name" required />
+		</div>
+		<div class="form-group">
+		<label>البريد الألكترونى</label>
+		<input type="email" class="form-control" ng-model="user.email" required />
+		</div> 
+		<div class="form-group">
+		<label>الرقم السرى</label>
+		<input type="password" class="form-control" ng-model="user.password" required />
+		</div>
+		<div class="form-group">
+			<label>الصلاحيات</label>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						مجموعة أولى
+						<input type="radio" ng-required="!user.permission" ng-model="user.permission" value="1" class="pull-left">	
+						</div>
+						<div class="panel-body">
+						<ul>
+							<li>إضافة أقسام والتعامل معها</li>
+							<li>إضافة كتب والتعامل معها</li>
+							<li>إضافة موظفين والتعامل معهم</li>
+							<li>إرسال تاسك</li>
+							<li>التعامل مع تاسك</li>
+							<li>إغلاق تاسك نهائى</li>
+						</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						مجموعة ثانية
+						<input type="radio" ng-required="!user.permission" ng-model="user.permission" value="2" class="pull-left">	
+						</div>
+						<div class="panel-body">
+						<ul>
+							<li>إضافة أقسام والتعامل معها</li>
+							<li>إضافة كتب والتعامل معها</li>
+							<li><del>إضافة موظفين والتعامل معهم</del></li>
+							<li>إرسال تاسك</li>
+							<li>التعامل مع تاسك</li>
+							<li><del>إغلاق تاسك نهائى</del></li>
+						</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						مجموعة ثالثة
+						<input type="radio" ng-required="!user.permission" ng-model="user.permission" value="3" class="pull-left">	
+						</div>
+						<div class="panel-body">
+						<ul>
+							<li><del>إضافة أقسام والتعامل معها</del></li>
+							<li><del>إضافة كتب والتعامل معها</del></li>
+							<li><del>إضافة موظفين والتعامل معهم</del></li>
+							<li><del>إرسال تاسك</del></li>
+							<li>التعامل مع تاسك</li>
+							<li><del>إغلاق تاسك نهائى</del></li>
+						</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button ng-disabled="createForm.$invalid" class="btn btn-primary">اضافة</button>        
+		</form>
+		<div id="show_result"></div>
+	</uib-tab>
+	<uib-tab heading="عرض جميع الموظفين">
+	<table class="table table-responsive">
+		<thead>
+			<tr>
+				<th>اسم الموظف</th>
+				<th>البريد الألكترونى</th>
+				<th>عمليات</th>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr ng-repeat="user in users">
+				<td>{{user.name}}</td>	
+				<td>{{user.email}}</td>	
+				<td>
+				<a href="#/user/{{user.id}}" class="btn btn-xs btn-info">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+				</a>
+				<button class="btn btn-xs btn-danger" ng-click="deleteUser($index,user)">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>					
+				</td>	
+			</tr>
+		</tbody>
+	</table>
+	</uib-tab>
+</uib-tabset>
+</div>
+</div>

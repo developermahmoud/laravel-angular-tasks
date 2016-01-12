@@ -1,0 +1,70 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+<div class="container">
+
+
+<table class="table">
+	<tr>
+		<td><strong>عنوان التاسك:</strong></td>
+		<td>{{task[0].task_title}} <{{task[0].user_task_name}}></td>	
+	</tr>
+	<tr>
+		<td><strong>اسم الكتاب:</strong></td>
+		<td>{{task[0].book_name}}</td>	
+	</tr>
+	<tr>
+		<td><strong>تاريخ الأرسال:</strong></td>
+		<td>{{task[0].date_created}}</td>	
+	</tr>
+	<tr>
+		<td><strong>تاريخ الأنتهاء من التاسك:</strong></td>
+		<td>{{task[0].end_date}}</td>	
+	</tr>
+	<tr>
+		<td><strong>المطلوب:</strong></td>
+		<td>{{task[0].content}}</td>	
+	</tr>	
+	<tr>
+		<td><strong>ملفات مرفقة:</strong></td>
+		<td><a href='public/upload/{{task[0].src}}'>تحميل</a></td>	
+	</tr>	
+</table>
+
+<hr />
+
+<div ng-switch on="task[0].status" >
+	<div ng-switch-when="0"></div>	
+	<div ng-switch-when="1">
+		<button type="button" ng-click="changeStatus()" class="btn btn-block btn-primary btn-lg">البدء فى العمل</button>
+	</div>	
+
+	<div ng-switch-when="2">
+		<form ng-submit="closeTask(picFile)">
+			<div class="form-group">
+				<label>ملحوظة</label>
+				<textarea class="form-control" ng-model="user_task.content" rows="5"></textarea>				
+			</div>
+
+			<div class="form-group">
+				<label>ارفاق ملف</label>
+			<input type="file" ng-disabled="disabledButtonAdd" id="cover" ngf-select ng-model="picFile" name="file" ngf-max-size="200MB">
+			<br />
+			<div class="progress" ng-show="picFile.progress >= 0">
+				<div id='progress-bar' class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'">
+					<span class="sr-only">{{picFile.progress}}% Complete (success)</span>
+				</div>
+			</div>		
+			</div>			
+			<button type="submit" id="submit"class="btn btn-block btn-primary btn-lg">تم الأنتهاء من العمل </button>
+		</form>
+	</div>
+
+	<div ng-switch-when="3">
+		<button class="btn btn-block btn-success btn-lg">تم الأنتهاء من العمل</button>
+	</div>
+
+</div>
+
+
+
+</div>

@@ -1,0 +1,64 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+
+<div class="container">
+	<div class="form-group">
+		<div class="pull-left">
+			<a href="#/files/id/{{book.id}}" class="btn btn-xs btn-warning" title="تاسكات على الكتاب">
+				<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+			</a>
+			<a href="#/files/id/{{book.id}}" class="btn btn-xs btn-info" title="نسخ الكتاب">
+				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+			</a>																
+		</div>		
+		<h3 class="page-header">عرض بيانات الكتاب <strong>{{book.name}}</strong> </h3>
+	</div>
+	<div class="row">
+		<form ng-submit="updateBook(picFile)" name="bookEditForm">
+				<div class="col-md-4">
+					<h3 class="page-header">تغيير الغلاف</h3>	
+					<input type="file"  name="file" ngf-pattern="'image/*'"
+    accept="image/*" id="cover" ngf-select ng-model="picFile" name="file" ngf-max-size="200MB">
+
+					<br />
+					<div class="progress" ng-show="picFile.progress >= 0">
+						<div id='progress-bar' class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'">
+							<span class="sr-only">{{picFile.progress}}% Complete (success)</span>
+						</div>
+					</div>
+					<br />
+					<img style="width:300px;" ng-if="hasImage(book.cover)" ng-src="public/upload/{{ book.cover }}">
+				</div>
+				<div class="col-md-8">
+					<h3 class="page-header">بيانات الكتاب</h3>	
+						<div class="form-group">
+							<label>اسم الكتاب</label>
+							<input type="text" class="form-control" ng-model="book.name" required/>
+						</div>	
+						
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label>رقم الإيداع المحلى</label>
+								<input type="text" class="form-control" ng-model="book.local_number"/>
+							</div>
+							<div class="form-group col-md-6">
+								<label>رقم الإيداع الدولى</label>
+								<input type="text" class="form-control" ng-model="book.international_number" />
+							</div>						
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-6" >
+								<label>الأولوية</label>
+								<input type="text" class="form-control" ng-model="book.priority" />
+							</div>	
+							<div class="form-group col-md-6">
+							</div>
+						</div>	
+						<input type="hidden" ng-model="book.id" />
+						<button type="submit" id="submit" ng-disabled="bookEditForm.$invalid" class="btn btn-success">تعديل</button>										
+				</div>
+			</form>
+		
+	</div>	
+</div>

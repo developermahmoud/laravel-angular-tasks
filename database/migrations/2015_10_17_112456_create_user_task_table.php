@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateUserTaskTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('user_task', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('status');
+			$table->string('src');
+			$table->text('content');
+			$table->integer('task_id')->unsigned();
+			$table->foreign('task_id')->references('id')->on('task')->onDelete('cascade');
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+			$table->integer('book_id')->unsigned();
+			$table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+			$table->integer('user_task')->unsigned();
+			$table->foreign('user_task')->references('id')->on('users')->onDelete('cascade');			
+			
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('user_task');
+	}
+
+}

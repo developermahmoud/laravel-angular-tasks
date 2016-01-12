@@ -1,0 +1,60 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+
+<div class="container">
+	<div class="row">
+	<form ng-submit="createBook(picFile)" name="bookForm">
+		<div class="col-md-4">
+			<h3 class="page-header">إرفع غلاف للكتاب</h3>	
+			<input type="file" required ngf-pattern="'image/*'" accept="image/*"  id="cover" ngf-select ng-model="picFile" name="file" ngf-max-size="200MB">
+			<br />
+			<div class="progress" ng-show="picFile.progress >= 0">
+				<div id='progress-bar' class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'">
+					<span class="sr-only">{{picFile.progress}}% Complete (success)</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h3 class="page-header">بيانات الكتاب</h3>	
+			
+				<div class="form-group">
+					<label>أختر القسم</label>
+					<select class="form-control" ng-model='book.category_id' required >
+						<option
+							ng-repeat="category in categorys" 
+							value="{{category.id}}" >
+							{{category.name}}
+						</option>
+					</select>
+				</div>	
+
+				<div class="form-group">
+					<label>اسم الكتاب</label>
+					<input type="text" class="form-control" ng-model="book.name" required />
+				</div>	
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label>رقم الإيداع المحلى</label>
+						<input type="text" class="form-control" ng-model="book.local_number"/>
+					</div>
+					<div class="form-group col-md-6">
+						<label>رقم الإيداع الدولى</label>
+						<input type="text" class="form-control" ng-model="book.international_number" />
+					</div>						
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-6" >
+						<label>الأولوية</label>
+						<input type="text" class="form-control" ng-model="book.priority" />
+					</div>	
+					<div class="form-group col-md-6">
+					</div>
+				</div>	
+				<button type="submit" id='submit' class="btn btn-primary" ng-disabled="bookForm.$invalid">اضافة</button>										
+		</div>
+		</form>
+		<div id="result"></div>
+	</div>
+</div>

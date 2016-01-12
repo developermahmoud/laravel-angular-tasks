@@ -1,0 +1,39 @@
+<nav class="navbar-fluid navbar-inverse" ng-controller="navController">
+     <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#/home">الموسوعة</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul ng-if="nav_links" class="nav navbar-nav">
+                    <li><a href="#/category">الأقسام</a></li>
+                    <li ng-if="nav_users"><a href="#/users">المستخدمين</a></li>
+                    <li class="dropdown">
+                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">الكتب <span class="caret"></span></a>
+                         <ul class="dropdown-menu">
+                         <li><a href="#/book/create">اضافة كتاب جديد</a></li>
+                         <li><a href="#/book">عرض الكتب</a></li>
+                         </ul>
+                    </li>
+               </ul>
+               <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                         {{user_auth.name}} <span class="badge">{{countTask}}</span> <span class="caret"></span></a>
+                         <ul class="dropdown-menu">
+                              <li><a href="#/users/tasks">تاسكات مطلوبة</a></li>
+                              <li><a href="#/logout">Logout</a></li>
+                         </ul>
+                    </li>
+               </ul>
+          </div><!-- /.navbar-collapse -->
+     </div><!-- /.container-fluid -->
+</nav>

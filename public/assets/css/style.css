@@ -1,0 +1,7 @@
+@import url(fonts.css);
+body{margin:0;padding:0;border:0;font-family: 'Droid Arabic Kufi', serif;}
+select{font-family: verdana;}
+.top-margin{margin-top:20px;}
+.sidebar-nav {padding: 9px 0;}
+tr.ng-enter{animation: bounceInRight 1s;}
+tr.ng-leave{animation: bounceOutLeft 1s;}

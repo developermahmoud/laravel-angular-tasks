@@ -1,0 +1,86 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+
+
+<div class="container">
+<h3 class="page-header">
+<div class="pull-left">
+	<a href="#/files/id/{{book.id}}" class="btn btn-xs btn-info" title="نسخ الكتاب">
+		<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+	</a>									
+	<a href="#/book/id/{{book.id}}" class="btn btn-xs btn-success" title="تعديل بيانات الكتاب">
+		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+	</a>					
+</div>	
+التاسكات الخاصة بالكتاب <strong>{{book.name}}</strong></h3>
+
+<div>
+<uib-tabset justified="true">
+	<uib-tab heading="ارسال تاسك جديد">
+	<form ng-submit="createTask(picFile)" name="taskForm">
+		<div class="form-group">
+			<label>اختر المرسل اليه</label>
+			<select ng-model="task.user_task" multiple class="form-control" required>
+				<option ng-repeat="users in users_task" value="{{users.id}}">{{users.name}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>المسؤل عن التاسك</label>
+			<select ng-model="task.user_responsibility" class="form-control">
+				<option ng-repeat="responsibility in users_task" value="{{responsibility.id}}">{{responsibility.name}}</option>
+			</select>
+		</div>		
+
+
+		<div class="form-group">
+			<label>عنوان التاسك</label>
+			<input type="text" class="form-control" ng-model="task.title" required>			
+		</div>
+
+		<div class="form-group">
+			<label>محتوى التاسك</label>
+			<textarea class="form-control" ng-model="task.content" rows="5"></textarea>			
+		</div>		
+		<div class="form-group">
+			<label>تاريخ الانتهاء من العمل</label>	
+			<input type="date" required id="exampleInput" name="input" ng-model="task.end_date" placeholder="yyyy-MM-dd" min="2013-01-01"  required class="form-control" />     
+		</div>	
+		<div class="form-group">
+			<label>مرفقات</label>
+			<input type="file" required ng-disabled="disabledButtonAdd" id="cover" ngf-select ng-model="picFile" name="file" ngf-max-size="200MB">
+			<br />
+			<div class="progress" ng-show="picFile.progress >= 0">
+				<div id='progress-bar' class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'">
+					<span class="sr-only">{{picFile.progress}}% Complete (success)</span>
+				</div>
+			</div>
+		</div>	
+		<button type="submit" id="submit" ng-disabled="taskForm.$invalid" class="btn btn-primary">ارسال</button>		
+	</form>
+
+	<div id="result"></div>
+	</uib-tab>
+	<uib-tab heading="عرض جميع التاسكات">
+	<table class="table table-responsive">
+		<thead>
+			<tr>
+				<th>عنوان التاسك</th>
+				<th>تاريخ الأرسال</th>
+				<th>حالة التاسك</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in tasks">
+				<td><a href="#/task/{{task.id}}">{{task.title}}</a></td>
+				<td>{{task.date_created}}</td>
+				<td ng-if="task.status"><span class="label label-success">مغلق</span></td>
+				<td ng-if="!task.status"><span class="label label-warning">متاح</span></td>
+			</tr>
+		</tbody>
+	</table>
+	</uib-tab>
+</uib-tabset>
+</div>
+
+</div>

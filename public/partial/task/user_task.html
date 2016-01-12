@@ -1,0 +1,113 @@
+<!-- Load Directive Navbar -->
+<navbar></navbar>
+
+
+<div class="container">
+<h3 class="page-header">التاسكات الخاصة بالموظف {{user_auth.name}}</h3>
+
+<div>
+<uib-tabset justified="true">
+	<uib-tab heading="الأنتظار">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>اسم الكتاب</th>
+					<th>عنوان التاسك</th>
+					<th>المرسل</th>
+					<th>تاريخ الأرسال</th>
+					<th>تاريخ الأنتهاء من التاسك</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="w in wait_tasks">
+					<td>{{w.book_name}}</td>
+					<td>{{w.task_title}}</td>
+					<td>{{w.user_task_name}}</td>
+					<td>{{w.date_created}}</td>
+					<td>{{w.end_date}}</td>
+					<td><a href="#/show-task/{{w.id}}">عرض</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</uib-tab>
+
+	<uib-tab heading="الأستلام">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>اسم الكتاب</th>
+					<th>عنوان التاسك</th>
+					<th>المرسل</th>
+					<th>تاريخ الأرسال</th>
+					<th>تاريخ الأنتهاء من التاسك</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="w in resive_tasks">
+					<td>{{w.book_name}}</td>
+					<td>{{w.task_title}}</td>
+					<td>{{w.user_task_name}}</td>
+					<td>{{w.date_created}}</td>
+					<td>{{w.end_date}}</td>
+					<td><a href="#/show-task/{{w.id}}">عرض</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</uib-tab>
+
+	<uib-tab heading="جارى العمل">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>اسم الكتاب</th>
+					<th>عنوان التاسك</th>
+					<th>المرسل</th>
+					<th>تاريخ الأرسال</th>
+					<th>تاريخ الأنتهاء من التاسك</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="p in progress_tasks">
+					<td>{{p.book_name}}</td>
+					<td>{{p.task_title}}</td>
+					<td>{{p.user_task_name}}</td>
+					<td>{{p.date_created}}</td>
+					<td>{{p.end_date}}</td>
+					<td><a href="#/show-task/{{p.id}}">عرض</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</uib-tab>
+
+	<uib-tab heading="تم الأنتهاء منه">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>اسم الكتاب</th>
+					<th>عنوان التاسك</th>
+					<th>المرسل</th>
+					<th>تاريخ الأرسال</th>
+					<th>تاريخ الأنتهاء من التاسك</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="d in done_tasks">
+					<td>{{d.book_name}}</td>
+					<td>{{d.task_title}}</td>
+					<td>{{d.user_task_name}}</td>
+					<td>{{d.date_created}}</td>
+					<td>{{d.end_date}}</td>
+					<td><a href="#/show-task/{{d.id}}">عرض</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</uib-tab>
+
+</uib-tabset>
+</div>
+
+</div>
